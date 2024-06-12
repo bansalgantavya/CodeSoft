@@ -12,12 +12,15 @@
 # View your list: Type the show command to see your to-do list.
 # We hope you enjoy using this code and working on the project. 
 # And hey, don’t forget to give a star this repo!
-# 
+
+
+
 a=None
 listdo=[]
 while(a!=1):
     file=input("Open existing(o)/create new(n):")
     filename=input("Enter the file name:")
+    
     if file.lower()=='o':
         try:
             with open(filename,'r') as f:
@@ -32,6 +35,7 @@ while(a!=1):
         # filename=input("Enter thr file name to be created:")
         print(f"{filename} created sucessfully")
         a=1
+    
     else:
         print("Invalid choice")
 
@@ -39,15 +43,15 @@ while(a!=1):
 
 print('''Hey! Welcome to our todolist powered by CODESOFT
       Here are the commands you can use:
-      'add <task>' to add a task
-      'remove <task>' to remove a task
-      'show list' to view your list
-      'save list' to save your list
-      'exit list' to exit(Make sure to save changes before exiting!)''')
+      'add- <task>' to add a task
+      'remove- <task>' to remove a task
+      'show- list' to view your list
+      'save- list' to save your list
+      'exit- list' to exit(Make sure to save changes before exiting!)''')
 
 operation=None
 while(operation!='exit'):
-    operation,task=map(str,input(f"Enter your operation or do 'save {filename}' and 'exit {filename}' to quit: ").split())
+    operation,task=map(str,input(f"Enter your operation or do 'save {filename}' and 'exit {filename}' to quit: ").split('-'))
     
     if operation.lower()=='add':
         listdo.append(task)

@@ -1,25 +1,46 @@
-# TO DO List
-# In this code, we're keeping things straightforward with basic Python—no rocket science needed! 🚀
+# Code Overview:
 
-# Here's the deal: We have a list called listdo where all the operations take place.
-#  Our while loop will keep running until you type the magic word: 'exit'. 
-# Before you leave, don't forget to save your changes!
+# File Handling Initialization:
+# The code begins by initializing an empty list listdo and a variable a set to None.
+# It then enters a loop where the user is prompted to either open an existing file or create a new one.
+# File Opening or Creation:
 
-# Here’s how you can manage your tasks:
-# Add a task: Use the add command followed by the task.
-# Remove a task: Use the remove command followed by the task.
-# Save your list: Just type the save command.
-# View your list: Type the show command to see your to-do list.
-# We hope you enjoy using this code and working on the project. 
-# And hey, don’t forget to give a star this repo!
+# Open Existing File:
+# If the user chooses to open an existing file (by inputting 'o'), they are prompted to enter the filename.
+# The code attempts to open and read the file, storing each line as an item in the listdo list.
+# If the file is not found, an error message is displayed.
+# Create New File:
+# If the user chooses to create a new file (by inputting 'n'), the filename is noted, and a success message is displayed.
+# If an invalid choice is made, the user is prompted again.
 
+# Command Instructions:
+# After successfully opening or creating a file, the user is greeted with a welcome message and a list of available commands:
+# add- <task>: Add a task to the list.
+# remove- <task>: Remove a task from the list.
+# show- list: Display all tasks in the list.
+# save- list: Save the list to the file.
+# exit- list: Exit the program (with a reminder to save changes).
 
+# Task Management Loop:
+# The code then enters a loop where it continuously prompts the user to enter an operation until they choose to exit.
+# Add Task:
+# The add command adds a specified task to the listdo list and confirms the addition.
+# Remove Task:
+# The remove command removes a specified task from the listdo list and confirms the removal.
+# Show List:
+# The show command displays all tasks in the listdo list, numbered sequentially.
+# Exit Program:
+# The exit command prompts for confirmation before breaking the loop and ending the program.
+# Save List:
+# The save command writes the current list of tasks to the specified file and confirms the save.
+# If an invalid command is entered, an error message is displayed.
 
 a=None
 listdo=[]
+print("TODOLIST @CODESOFT cc%GANTAVYA BANSAL")
 while(a!=1):
     file=input("Open existing(o)/create new(n):")
-    filename=input("Enter the file name:")
+    filename=input("Enter the file name:")+'.txt'
     
     if file.lower()=='o':
         try:
@@ -40,7 +61,6 @@ while(a!=1):
         print("Invalid choice")
 
 
-
 print('''Hey! Welcome to our todolist powered by CODESOFT
       Here are the commands you can use:
       'add- <task>' to add a task
@@ -51,7 +71,7 @@ print('''Hey! Welcome to our todolist powered by CODESOFT
 
 operation=None
 while(operation!='exit'):
-    operation,task=map(str,input(f"Enter your operation or do 'save {filename}' and 'exit {filename}' to quit: ").split('-'))
+    operation,task=map(str,input(f"Enter your operation or do 'save- {filename}' and 'exit- {filename}' to quit: ").split('-'))
     
     if operation.lower()=='add':
         listdo.append(task)
@@ -66,7 +86,7 @@ while(operation!='exit'):
             print(i+1,listdo[i])
    
     elif operation.lower()=='exit':
-        if(input("confirm exit?? enter 'y' else 'n': ")=='y'):
+        if(input("confirm exit?? enter 'yes' else 'no': ")=='y'):
             print(f"Succoess! {filename} closed")
             break
 

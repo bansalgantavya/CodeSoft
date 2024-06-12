@@ -13,33 +13,69 @@
 # We hope you enjoy using this code and working on the project. 
 # And hey, don’t forget to give a star this repo!
 # 
-a=0
+a=None
 listdo=[]
+while(a!=1):
+    file=input("Open existing(o)/create new(n):")
+    filename=input("Enter the file name:")
+    if file.lower()=='o':
+        try:
+            with open(filename,'r') as f:
+                listdo=f.read().splitlines()
+                a=1
+                print(f"{filename} found")
+
+        except FileNotFoundError:
+            print("Error! File not found")
+
+    elif file.lower()=='n':
+        # filename=input("Enter thr file name to be created:")
+        print(f"{filename} created sucessfully")
+        a=1
+    else:
+        print("Invalid choice")
+
+
+
 print('''Hey! Welcome to our todolist powered by CODESOFT
-    Commands Overview:
-Add a Task: add
-Remove a Task: remove
-Save the List: save
-Show the To-Do List: show
-Exit the Program: exit (Make sure to save changes before exiting!)''')
-while(a!='exit'):
-    a=input("Enter your operation or do 'save' and 'exit' to quit: ")
-    if a=='add':
-        task=input("Enter your task: ")
+      Here are the commands you can use:
+      'add <task>' to add a task
+      'remove <task>' to remove a task
+      'show list' to view your list
+      'save list' to save your list
+      'exit list' to exit(Make sure to save changes before exiting!)''')
+
+operation=None
+while(operation!='exit'):
+    operation,task=map(str,input(f"Enter your operation or do 'save {filename}' and 'exit {filename}' to quit: ").split())
+    
+    if operation.lower()=='add':
         listdo.append(task)
-    elif a=='remove':
-        task=input("Enter your task: ")
+        print(f"Task '{task}' added successfully")
+    
+    elif operation.lower()=='remove':
         listdo.remove(task)
-    elif a=='show':
-        for i in listdo:
-            print(i)
-    elif a=='exit':
+        print(f"Task '{task}' removed successfully")
+    
+    elif operation.lower()=='show':
+        for i in range(0,len(listdo)):
+            print(i+1,listdo[i])
+   
+    elif operation.lower()=='exit':
         if(input("confirm exit?? enter 'y' else 'n': ")=='y'):
+            print(f"Succoess! {filename} closed")
             break
-    elif a=='save':
-        with open('todo.txt', 'w') as f:
+
+        else:
+            continue
+    
+    elif operation.lower()=='save':
+        with open(filename, 'w') as f:
             for item in listdo:
-                f.write("%s\n" % item)
+                f.write("%s\n" %item)
+        print(f"{filename} saved")
 
     else:
         print("Invalid input")
+
+
